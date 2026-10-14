@@ -118,6 +118,47 @@ const statusText: Record<Book['status'], string> = {
   done: 'Прочитано',
 };
 
+const DeleteButton = styled.button`
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  font-size: 18px;
+  background: #fffaf4;
+  border: 1px solid #ded6cc;
+  border-radius: 10px;
+  cursor: pointer;
+
+  margin-left: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #f3e9dd;
+  }
+
+  &:active {
+    background: #e8d8c6;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #8b735f;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const Actions = styled.div`
+  display: flex;
+  margin-top: 12px;
+`;
+
 export function BookCard({ book }: BookCardProps) {
   const rating = book.rating ?? 0;
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
@@ -142,6 +183,10 @@ export function BookCard({ book }: BookCardProps) {
         ) : (
           <Info>Оценка появится после прочтения</Info>
         )}
+
+          <Actions>
+            <DeleteButton type="button" aria-label="Удалить книгу">🗑️</DeleteButton>
+          </Actions>
       </div>
     </Card>
   );

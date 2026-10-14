@@ -3,6 +3,7 @@ import { BookList } from './components/BookList';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header'
 import { books } from './data/books';
+import { Stats } from './Stats/Stats';
 
 function App() {
   const userData = [
@@ -28,6 +29,7 @@ function App() {
     <Header userData={userData} />
     <main>
       <h1>Welcome to the Bookstore</h1>
+      <Stats books={books} />
       <BookList books={books} />
     </main>
     <Footer />

@@ -11,7 +11,7 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   margin: 0 0 16px;
   font-size: 24px;
-  color: #222;
+  color:  #7c3aed;
 `;
 
 const List = styled.div`

@@ -22,15 +22,16 @@ const List = styled.div`
 
 interface BookListProps {
   books: Book[];
+  deleteBook: (id: number) => void;
 }
 
-export function BookList({ books }: BookListProps) {
+export function BookList({ books, deleteBook }: BookListProps) {
   return (
     <Section>
       <SectionTitle>Моя библиотека</SectionTitle>
       <List>
         {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+          <BookCard key={book.id} book={book} deleteBook={deleteBook} />
         ))}
       </List>
     </Section>

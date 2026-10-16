@@ -110,6 +110,7 @@ const Stars = styled.span`
 
 interface BookCardProps {
   book: Book;
+  deleteBook: (id: number) => void;
 }
 
 const statusText: Record<Book['status'], string> = {
@@ -159,7 +160,7 @@ const Actions = styled.div`
   margin-top: 12px;
 `;
 
-export function BookCard({ book }: BookCardProps) {
+export function BookCard({ book, deleteBook }: BookCardProps) {
   const rating = book.rating ?? 0;
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
@@ -185,7 +186,7 @@ export function BookCard({ book }: BookCardProps) {
         )}
 
           <Actions>
-            <DeleteButton type="button" aria-label="Удалить книгу">🗑️</DeleteButton>
+            <DeleteButton  type="button" onClick={() => deleteBook(book.id)} aria-label="Удалить книгу">🗑️</DeleteButton>
           </Actions>
       </div>
     </Card>

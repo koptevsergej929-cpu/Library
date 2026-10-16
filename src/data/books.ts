@@ -1,6 +1,6 @@
 import type { Book } from '../types';
 
-export const books: Book[] = [
+export const initialBooks: Book[] = [
   {
     id: 1,
     title: 'Мастер и Маргарита',

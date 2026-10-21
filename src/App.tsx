@@ -36,13 +36,24 @@ function App() {
   );
 };
 
+const addBook = (book: Omit<Book, "id">) => {
+  const newBook: Book = {
+    id: Date.now(),
+    ...book,
+  };
+  setBooks((currentBooks) => [
+    ...currentBooks,
+    newBook,
+  ]);
+};
+
   return (
     <>
     <Header userData={userData} />
     <main>
       <h1>Welcome to the Bookstore</h1>
       <Stats books={books} />
-      <BookForm />
+      <BookForm addBook={addBook} />
       <BookList books={books} deleteBook={deleteBook} />
       <TaskStateDemo />
     </main>

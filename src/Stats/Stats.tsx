@@ -1,5 +1,10 @@
 import type { Book } from "../types";
 import styled from 'styled-components';
+import booksIcon from "../assets/img/books.png";
+import checkIcon from "../assets/img/check.png";
+import bookOpenIcon from "../assets/img/book-open.png";
+import bookmarkIcon from "../assets/img/bookmark.png";
+import headerBooksImage from "../assets/img/header-books.png";
 
 
 interface StatsProps {
@@ -7,28 +12,78 @@ interface StatsProps {
 }
 
 const StatsSection = styled.section`
-  margin: 24px 0;
+  position: relative;
+  margin-bottom: 28px;
+`;
+
+const HeaderImage = styled.img`
+  position: absolute;
+  right: -60px;
+  bottom: 50px;
+  z-index: 2;
+  width: 400px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
 `;
 
 const StatsWrapper = styled.div`
   display: flex;
-  gap: 16px;
-  justify-content: space-between;
+  padding: 28px 36px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid #e7dfd4;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(82, 68, 52, 0.1);
+  backdrop-filter: blur(10px);
 `;
 
 const StatCard = styled.div`
-  flex: 1;
-  padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  text-align: center;
-  background: #fff;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  padding: 0 28px;
+  border-right: 1px solid #e6ded3;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
+
+  &:last-of-type {
+    padding-right: 0;
+    border-right: none;
+  }
+`;
+
+const IconBox = styled.div<{
+  variant: "total" | "done" | "reading" | "want";
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+
+  background: ${({ variant }) => {
+    if (variant === "done") return "#dcebdd";
+    if (variant === "reading") return "#dbeaf4";
+    if (variant === "want") return "#e8e5e1";
+    return "#efe3d4";
+  }};
+`;
+
+const Icon = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 `;
 
 const Label = styled.div`
-  font-size: 13px;
-  color: #666;
-  margin-top: 4px;
+  margin-bottom: 6px;
+  font-size: 18px;
 `;
 
 const Value = styled.div`
@@ -45,27 +100,49 @@ export function Stats({ books }: StatsProps) {
 
   return (
     <StatsSection>
-      <StatsWrapper>
-        <StatCard>
-          <Value>{total}</Value>
+    <HeaderImage src={headerBooksImage} alt="" />
+
+    <StatsWrapper>
+      <StatCard>
+        <IconBox variant="total">
+          <Icon src={booksIcon} alt="" />
+        </IconBox>
+        <div>
           <Label>Всего книг</Label>
-       </StatCard>
+          <Value>{total}</Value>
+        </div>
+      </StatCard>
 
-        <StatCard>
-          <Value>{done}</Value>
+      <StatCard>
+        <IconBox variant="done">
+          <Icon src={checkIcon} alt="" />
+        </IconBox>
+        <div>
           <Label>Прочитано</Label>
-        </StatCard>
+          <Value>{done}</Value>
+        </div>
+      </StatCard>
 
-        <StatCard>
-           <Value>{reading}</Value>
-           <Label>Читаю</Label>
-        </StatCard>
+      <StatCard>
+        <IconBox variant="reading">
+          <Icon src={bookOpenIcon} alt="" />
+        </IconBox>
+        <div>
+          <Label>Читаю</Label>
+          <Value>{reading}</Value>
+        </div>
+      </StatCard>
 
-        <StatCard>
-           <Value>{want}</Value>
-           <Label>Хочу прочитать</Label>
-        </StatCard>
-     </StatsWrapper>
-    </StatsSection>
+      <StatCard>
+        <IconBox variant="want">
+          <Icon src={bookmarkIcon} alt="" />
+        </IconBox>
+        <div>
+          <Label>Хочу прочитать</Label>
+          <Value>{want}</Value>
+        </div>
+      </StatCard>
+    </StatsWrapper>
+  </StatsSection>
   );
 }

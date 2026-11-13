@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import type { Book, BookStatus } from '../../types';
+import { TrashIcon } from "../../icons/icons";
 
 const Card = styled.div`
   border: 1px solid #e0e0e0;
@@ -186,7 +187,7 @@ export function BookCard({ book, deleteBook }: BookCardProps) {
         )}
 
           <Actions>
-            <DeleteButton  type="button" onClick={() => deleteBook(book.id)} aria-label="Удалить книгу">🗑️</DeleteButton>
+            <DeleteButton  type="button" onClick={() => deleteBook(book.id)} aria-label="Удалить книгу"><TrashIcon /></DeleteButton>
           </Actions>
       </div>
     </Card>

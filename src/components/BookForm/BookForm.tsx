@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import type { BookStatus, Book } from "../../types";
+import { InfoIcon } from "../../icons/icons";
 
 interface BookFormProps {
   addBook: (book: Omit<Book, "id">) => void;
@@ -208,6 +209,7 @@ export function BookForm({ addBook }: BookFormProps) {
         </>
       ) : (
         <Hint>
+          <InfoIcon />
           <span>
             Поля оценки и заметки появятся, если вы выберете
             статус «Прочитано».
